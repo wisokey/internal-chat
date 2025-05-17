@@ -30,8 +30,11 @@ function initPage() {
         submitRoomPassword();
       }
     };
-    // 自动聚焦密码输入框
-    setTimeout(() => passwordInput.focus(), 0);
+    // 自动聚焦密码输入框 
+    // 判断是否非移动端
+    if (!navigator.userAgent.match(/Android/i) && !navigator.userAgent.match(/iPhone/i) && !navigator.userAgent.match(/iPad/i) && !navigator.userAgent.match(/iPod/i)) {
+      setTimeout(() => passwordInput.focus(), 0);
+    }
   } else {
     // 没有roomId，显示主界面
     document.querySelector('.left').style.display = 'flex';
