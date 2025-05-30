@@ -434,7 +434,7 @@ class XChatUser {
           
           // 发送实际数据
           await this.checkBufferedAmount();
-          this.chatChannel.send(buffer);
+          this.chatChannelSendBuffer(buffer);
           
           totalSent += buffer.byteLength;
 
@@ -659,6 +659,9 @@ class XChatUser {
     
     // 发送实际数据
     await this.checkBufferedAmount();
-    this.chatChannel.send(buffer);
+    this.chatChannelSendBuffer(buffer);
+  }
+  async chatChannelSendBuffer(buffer) {
+    await this.chatChannel.send(buffer);
   }
 }
