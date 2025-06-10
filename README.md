@@ -26,9 +26,21 @@ demo演示：https://fagedongxi.com
 
 ### 二进制方式
 * 下载对应平台的可执行文件，直接执行即可
-* 房间的配置文件应放在应用同级目录，文件名必须是 `room_pwd.json`，具体内容格式参考 `.room_pwd.json`
 * 默认监听 `8081` 端口，可通过参数指定端口，例如 `./internal-chat-linux 8082`
 * 如果你用windows，可参考 https://v.douyin.com/CeiJahpLD/ 注册成服务
+
+## 房间配置
+* 配置文件名：`room_pwd.json`
+* 存放目录：应用同级目录
+* 格式：参考样例 `.room_pwd.json`
+
+## 常见问题：
+在线列表看见对方，但一直处于断开的状态且无法发送消息：
+* 原因一：浏览器不支持WebRTC（目前最新版已经在用户打开后自动检测并加入提示），旧版没有检测功能可以临时用这个进行测试：https://space.coze.cn/s/qDNpw1y7MJw/
+* 原因二：网络环境不支持互相访问，详见：https://v.douyin.com/IPoHlTBzngg/
+  > 解决方案：
+  >  1. 私有部署「发个东西」+「TURN中转服务coturn」
+  >  2. 配置房间增加TURN支持（ `.room_pwd.json` 样例文件中有TURN的配置格式）
 
 ### nginx代理配置样例
 ```

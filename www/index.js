@@ -15,6 +15,12 @@ var MD5 = function(d){var r = M(V(Y(X(d),8*d.length)));return r.toLowerCase()};f
 
 // 初始化页面
 function initPage() {
+  // 检测WebRTC支持
+  if (!window.RTCPeerConnection && !window.webkitRTCPeerConnection) {
+    addChatItem('system', '您的浏览器不支持WebRTC，请使用Chrome、Firefox、Safari等现代浏览器访问。');
+    return;
+  }
+
   const roomId = window.location.pathname.split('/')[1];
   if (roomId) {
     // 如果有roomId，显示密码输入框并隐藏主界面
@@ -680,7 +686,7 @@ document.querySelector('.send-btn').addEventListener('click', () => {
 function showNicknameModal() {
   const modal = document.getElementById('nicknameModal');
   const input = document.getElementById('nicknameInput');
-  input.value = currentNickname;
+  input.value = currentNickname.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
   modal.style.display = 'block';
   
   // 自动获取焦点
@@ -706,9 +712,10 @@ function closeNicknameModal() {
 
 function saveNickname() {
   const input = document.getElementById('nicknameInput');
-  const nickname = input.value.trim();
+  let nickname = input.value.trim();
   
   if (nickname) {
+    nickname = nickname.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     currentNickname = nickname;
     document.cookie = `nickname=${encodeURIComponent(nickname)}; path=/; max-age=31536000`; // 保存一年
     
