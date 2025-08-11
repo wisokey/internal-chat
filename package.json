@@ -1,6 +1,6 @@
 {
   "name": "internal-chat",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "node-turn": "^0.0.6",
     "ws": "^8.18.0"
   },
   "bin": "./index.js",
